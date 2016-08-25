@@ -8,8 +8,8 @@ node("slave") {
        env.DISPLAY=":1"
     }
     
-    checkout scm
-    if (isUnix) {sh 'git submodule update --init'} else {bat "git submodule update --init"}
+    // checkout scm
+    // if (isUnix) {sh 'git submodule update --init'} else {bat "git submodule update --init"}
     
     stage "test"
 
@@ -19,7 +19,8 @@ node("slave") {
     if (isUnix){
         sh "${commandToRun}"
     } else {
-        bat "@chcp 1251 > nul \n${commandToRun}"
+        bat "${commandToRun}"
+        // bat "@chcp 1251 > nul \n${commandToRun}"
     }    
     // }
 
