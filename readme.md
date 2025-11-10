@@ -224,3 +224,35 @@
 ### Для запуска всех приемочных тестов в текущем каталоге
 
     1testrunner -runall "$(CURRENT_DIRECTORY)"
+
+## Запуск тестирования из Visual Studio Code (VSC)
+
+### Работа с отладкой 
+
+1. Для возможности отладки должен быть установлен набор расширений: 1C (BSL) Extension Pack. 
+
+2. Чтобы запускать и отлаживать требуется настроить launch.json в репозитарии своего проекта в VSC.  Далее можно выбрать любой файл тестов с расширением *.os и нажать F5 для запуска с отладкой.
+
+Пример настройки:
+```JSON
+{
+    // .vscode/launch.json
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Отладка 1Script",
+            "type": "oscript",
+            "request": "launch",
+            "program": "c:\\Program Files\\OneScript\\lib\\1testrunner\\src\\main.os",
+            "args": ["-run", "${file}"],
+            "cwd": "${workspaceRoot}",
+            "env": {},
+            "runtimeExecutable": null,
+            "runtimeArgs": [],
+            "debugPort": 2801
+        }
+    ]
+}
+```
+
+3. В момент отладки можно эффективно дорабатывать и расширять функционал разрабатываемого приложения и сразу теста. 
