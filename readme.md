@@ -213,17 +213,23 @@
 
 в Notepad++ (в т.ч. и для плагина NppExec) можно использовать следующую команду:
 
+ ```sh
     cmd.exe /c C:\Projects\1script\tests\start.cmd "$(FULL_CURRENT_PATH)"
-
+ ```
+ 
 или
 
-    1testrunner -run "$(FULL_CURRENT_PATH)"
+```sh
+1testrunner -run "$(FULL_CURRENT_PATH)"
+```
 
 В случае ошибок в тестах/файле будет выдано окно консоли с описанием ошибки.
 
 ### Для запуска всех приемочных тестов в текущем каталоге
 
-    1testrunner -runall "$(CURRENT_DIRECTORY)"
+```sh
+1testrunner -runall "$(CURRENT_DIRECTORY)"
+```
 
 ## Запуск тестирования из Visual Studio Code (VSC)
 
@@ -231,21 +237,21 @@
 
 1. Для возможности отладки должен быть установлен набор расширений: 1C (BSL) Extension Pack. 
 
-2. Чтобы запускать и отлаживать требуется настроить launch.json в репозитарии своего проекта в VSC.  Далее можно выбрать любой файл тестов с расширением *.os и нажать F5 для запуска с отладкой.
+2. Чтобы запускать и отлаживать можно настроить launch.json в репозитарии своего проекта в VSC.  Далее можно выбрать любой файл тестов с расширением *.os и нажать F5 для запуска с отладкой.
 
-Пример настройки:
+Пример настройки для Windows `.vscode/launch.json`:
+
 ```JSON
 {
-    // .vscode/launch.json
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Отладка 1Script",
+            "name": "Запуск тестов 1testrunner",
             "type": "oscript",
             "request": "launch",
             "program": "c:\\Program Files\\OneScript\\lib\\1testrunner\\src\\main.os",
             "args": ["-run", "${file}"],
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceFolder}",
             "env": {},
             "runtimeExecutable": null,
             "runtimeArgs": [],
